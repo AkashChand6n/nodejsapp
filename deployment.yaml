@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: nodedeploy
   name: nodedeploy
@@ -10,15 +9,11 @@ spec:
   selector:
     matchLabels:
       app: nodedeploy
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: nodedeploy
     spec:
       containers:
       - image: 909484000752.dkr.ecr.us-east-1.amazonaws.com/node:latest
         name: node
-        resources: {}
-status: {}
