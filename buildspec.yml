@@ -18,7 +18,7 @@ phases:
   post_build:
     commands:
       - docker push 909484000752.dkr.ecr.us-east-1.amazonaws.com/node:latest
-      - cp deployment.yaml .
+      - cp ./deployment.yaml .
 
 artifacts:
   files:
