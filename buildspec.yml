@@ -1,0 +1,25 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - sudo apt update && sudo apt upgrade -y
+      - java -version
+      - mvn -version
+      - curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+      - sudo apt install -y nodejs
+      - node -v
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 909484000752.dkr.ecr.us-east-1.amazonaws.com/node
+      - docker --version
+  
+  build:
+    commands:
+      - docker build -t 909484000752.dkr.ecr.us-east-1.amazonaws.com/node:latest -f dockerfile .
+
+  post_build:
+    commands:
+      - docker push 909484000752.dkr.ecr.us-east-1.amazonaws.com/node:latest
+      - cp deployment.yaml .
+
+artifacts:
+  files:
+    - deployment.yaml
